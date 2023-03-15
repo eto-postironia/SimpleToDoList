@@ -21,4 +21,12 @@ public interface TaskDao {
     @Query("SELECT * FROM task_table WHERE id = :id")
     Observable<Task> getTaskById(int id);
 
+    // Метод чтения всех задач из таблицы
+    @Query("SELECT * FROM task_table")
+    Observable<List<Task>> getAllTasks();
+
+    // Метод изменения значения isCompleted (статус выполнения текущей задачи) в имеющейся записи по id
+    @Query("UPDATE task_table SET isCompleted = :isCompleted WHERE id = :id")
+    Completable setIsCompleted(boolean isCompleted, int id);
+
 }
